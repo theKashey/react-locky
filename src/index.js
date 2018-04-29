@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const EVENTS = {
@@ -21,11 +21,6 @@ const preventAll = (event) => {
 
 const preventDefault = (event) => {
   event.preventDefault();
-};
-
-const preventPropagation = (event) => {
-  event.stopPropagation();
-  event.stopImmediatePropagation();
 };
 
 const report = callback => (event) => {
@@ -65,7 +60,7 @@ const handleScroll = (endTarget, event, sourceDelta) => {
   let availableScrollTop = 0;
 
   do {
-    const {scrollTop, scrollHeight, clientHeight} = target;
+    const { scrollTop, scrollHeight, clientHeight } = target;
 
     availableScroll += scrollHeight - clientHeight - scrollTop;
     availableScrollTop += scrollTop;
@@ -86,7 +81,7 @@ const handleScroll = (endTarget, event, sourceDelta) => {
 };
 
 const addEvent = (target, event, handler, capture) =>
-  handler && ({event, handler: target.addEventListener(event, handler, capture)});
+  handler && ({ event, handler: target.addEventListener(event, handler, capture) });
 
 class EventLock extends Component {
   static propTypes = {
@@ -128,7 +123,7 @@ class EventLock extends Component {
     const handlers = this.getEventHandlers();
     this.documentEvents = Object
       .keys(handlers)
-      .map((event) => addEvent(document, event, this.getHandler(event, handlers[event])))
+      .map(event => addEvent(document, event, this.getHandler(event, handlers[event])))
       .filter(x => x);
 
     this.nodeEvents = [];
@@ -138,14 +133,14 @@ class EventLock extends Component {
           addEvent(this.ref, 'wheel', this.scrollWheel, true),
           addEvent(this.ref, 'touchstart', this.scrollTouchStart, true),
           addEvent(this.ref, 'touchmove', this.scrollTouchMove, true),
-        ]
+        ],
       );
     }
   }
 
   disable() {
-    this.documentEvents.forEach(({event, handler}) => document.removeEventListener(event, handler, true));
-    this.nodeEvents.forEach(({event, handler}) => this.ref.removeEventListener(event, handler));
+    this.documentEvents.forEach(({ event, handler }) => document.removeEventListener(event, handler, true));
+    this.nodeEvents.forEach(({ event, handler }) => this.ref.removeEventListener(event, handler));
   }
 
   setRef = (ref) => {
@@ -161,7 +156,7 @@ class EventLock extends Component {
   isEventInLock = event => this.ref === event.target || this.ref.contains(event.target);
 
   getEventHandlers() {
-    const {noDefault, events} = this.props;
+    const { noDefault, events } = this.props;
     return Object.assign({}, noDefault ? {} : EVENTS, events || {});
   }
 
@@ -178,7 +173,7 @@ class EventLock extends Component {
   }
 
   render() {
-    const Node = this.props.component || (<div/>).type;
+    const Node = this.props.component || (<div />).type;
     return (
       <Node ref={this.setRef}>
         {this.props.children}

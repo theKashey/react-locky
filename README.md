@@ -17,6 +17,11 @@ Locky will completely disable any user iterations outside of nested children.
         <Button>You will be ABLE to press</Button>
         <Scrollable>You will be able to scroll</Scrollable
      </Locky>
+     
+     // you can tune behavior
+     <Locky events={{keydown: false}}>
+       // Locky got everything, expect keydown        
+     </Locky>
  </div>
 ```
 
