@@ -65,13 +65,13 @@ const handleScroll = (endTarget, event, sourceDelta) => {
   let availableScrollTop = 0;
 
   do {
-    target = target.parentNode;
-
     const { scrollTop, scrollHeight, clientHeight } = target;
 
     availableScroll += scrollHeight - clientHeight - scrollTop;
     availableScrollTop += scrollTop;
-  } while (target !== endTarget);
+
+    target = target.parentNode;
+  } while (endTarget.contains(target));
 
   if (isDeltaPositive && delta > availableScroll) {
     shouldCancelScroll = true;

@@ -12,6 +12,7 @@ const Lock = () => (
       {clone(<div>SOME TEXT <button onClick={() => alert('!')}>a button</button> or <input/></div>)}
       <div style={{overflow: 'scroll', height: 400}}>
         <Locky onEscape={(event) => console.log('ESC!!', event)}>
+          LOCKY!!
           <div style={{overflow: 'scroll', maxHeight: 200}}>
             <div>
               <div style={{overflow: 'scroll', maxHeight: 60}}>
