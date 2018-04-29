@@ -1,0 +1,70 @@
+{
+  "name": "react-locky",
+  "version": "1.0.0",
+  "description": "Lock Loki",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "build": "rm -Rf ./dist && babel src -d dist",
+    "test": "jest",
+    "prepublish": "npm run build",
+    "lint": "eslint src tests",
+    "lint:fix": "eslint src tests --fix",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "size": "npm run build && size-limit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theKashey/react-locky.git"
+  },
+  "keywords": [
+    "react",
+    "lock",
+    "event",
+    "isolation"
+  ],
+  "author": "theKashey <thekashey@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/theKashey/react-locky/issues"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.3.6",
+    "@storybook/addon-links": "^3.3.6",
+    "@storybook/react": "^3.3.6",
+    "@types/react": "^16.3.13",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "^22.4.3",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.2.0",
+    "eslint-config-airbnb": "15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "6.0.2",
+    "eslint-plugin-mocha": "^4.11.0",
+    "eslint-plugin-react": "^7.3.0",
+    "jest": "^22.4.3",
+    "jsdom": "11.1.0",
+    "jsdom-global": "3.0.2",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.1",
+    "react-test-renderer": "^15.6.1",
+    "storybook": "^1.0.0"
+  },
+  "homepage": "https://github.com/theKashey/react-locky#readme",
+  "dependencies": {
+    "prop-types": "15.5.10",
+    "size-limit": "^0.17.0"
+  }
+}
