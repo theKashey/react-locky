@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 const EVENTS = {
@@ -9,7 +9,7 @@ const EVENTS = {
   touchstart: 'report',
   keydown: true,
   change: false,
-  scroll: 'no-bubble',
+  scroll: true,
   wheel: true,
 };
 
@@ -65,7 +65,7 @@ const handleScroll = (endTarget, event, sourceDelta) => {
   let availableScrollTop = 0;
 
   do {
-    const { scrollTop, scrollHeight, clientHeight } = target;
+    const {scrollTop, scrollHeight, clientHeight} = target;
 
     availableScroll += scrollHeight - clientHeight - scrollTop;
     availableScrollTop += scrollTop;
@@ -84,6 +84,9 @@ const handleScroll = (endTarget, event, sourceDelta) => {
     preventAll(event);
   }
 };
+
+const addEvent = (target, event, handler, capture) =>
+  handler && ({event, handler: target.addEventListener(event, handler, capture)});
 
 class EventLock extends Component {
   static propTypes = {
@@ -125,45 +128,24 @@ class EventLock extends Component {
     const handlers = this.getEventHandlers();
     this.documentEvents = Object
       .keys(handlers)
-      .map((event) => {
-        const handler = this.getHandler(event, handlers[event]);
-        if (handler) {
-          document.addEventListener(event, handler, true);
-          return { event, handler };
-        }
-        return null;
-      })
+      .map((event) => addEvent(document, event, this.getHandler(event, handlers[event])))
       .filter(x => x);
-    this.nodeEvents = Object
-      .keys(handlers)
-      .filter(x => handlers[x] === 'no-bubble')
-      .map((event) => {
-        const handler = preventPropagation;
-        this.ref.addEventListener(event, handler);
-        return { event, handler };
-      });
 
+    this.nodeEvents = [];
     if (handlers.scroll) {
-      this.nodeEvents.push({
-        event: 'wheel',
-        handler: this.ref.addEventListener('wheel', this.scrollWheel, true),
-      });
-
-      this.nodeEvents.push({
-        event: 'touchstart',
-        handler: this.ref.addEventListener('touchstart', this.scrollTouchStart),
-      });
-
-      this.nodeEvents.push({
-        event: 'touchmove',
-        handler: this.ref.addEventListener('touchmove', this.scrollTouchMove),
-      });
+      this.nodeEvents.push(
+        ...[
+          addEvent(this.ref, 'wheel', this.scrollWheel, true),
+          addEvent(this.ref, 'touchstart', this.scrollTouchStart, true),
+          addEvent(this.ref, 'touchmove', this.scrollTouchMove, true),
+        ]
+      );
     }
   }
 
   disable() {
-    this.documentEvents.forEach(({ event, handler }) => document.removeEventListener(event, handler, true));
-    this.nodeEvents.forEach(({ event, handler }) => this.ref.removeEventListener(event, handler));
+    this.documentEvents.forEach(({event, handler}) => document.removeEventListener(event, handler, true));
+    this.nodeEvents.forEach(({event, handler}) => this.ref.removeEventListener(event, handler));
   }
 
   setRef = (ref) => {
@@ -171,13 +153,15 @@ class EventLock extends Component {
   };
 
   scrollWheel = event => handleScroll(this.ref, event, event.deltaY);
-  scrollTouchStart = (event) => { this.touchStart = getTouchY(event); }
+  scrollTouchStart = (event) => {
+    this.touchStart = getTouchY(event);
+  }
   scrollTouchMove = event => handleScroll(this.ref, event, this.touchStart - getTouchY(event));
 
   isEventInLock = event => this.ref === event.target || this.ref.contains(event.target);
 
   getEventHandlers() {
-    const { noDefault, events } = this.props;
+    const {noDefault, events} = this.props;
     return Object.assign({}, noDefault ? {} : EVENTS, events || {});
   }
 
@@ -194,7 +178,7 @@ class EventLock extends Component {
   }
 
   render() {
-    const Node = this.props.component || (<div />).type;
+    const Node = this.props.component || (<div/>).type;
     return (
       <Node ref={this.setRef}>
         {this.props.children}

@@ -46,9 +46,12 @@ Locky will completely disable any user iterations outside of nested children.
  
 # Related
  - [react-focus-lock](react-focus-lock) - to scope focus
+ 
+ Locky __could not__ manage focus itself, as long there is no way to "preventDefault" it.
+ Once you will "tab-out", you will not be able to "tab-in", as long key events are blocked. 
+ 
  - [react-scroll-captor](https://github.com/jossmac/react-scroll-captor) - to scope scroll.
  
-  
  `<Locky noDefault events={{scroll:true}} />` will do almost the same, but differently.
  As long `react-scroll-captor` manage "scroll" for `children`, locky could manage scroll for any `target` inside.
  Ie - if you have scrollable, inside scrollable, or scrollable is not a top-most node - react-scroll-captor will __not__ 
