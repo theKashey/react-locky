@@ -40,6 +40,10 @@ Locky will completely disable any user iterations outside of nested children.
  - scroll: true, (scroll is handled separately)
  - wheel: true, 
  
+# Example
+ - https://codesandbox.io/s/l7nrkv1rnq - simple Locky
+ - https://codesandbox.io/s/k55641yx6o - a bit more complex 
+ 
 # Related
  - [react-focus-lock](react-focus-lock) - to scope focus
  - [react-scroll-captor](https://github.com/jossmac/react-scroll-captor) - to scope scroll.
