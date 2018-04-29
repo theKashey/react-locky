@@ -1,9 +1,11 @@
-# react-locky
+# react-locky [![CircleCI status](https://img.shields.io/circleci/project/github/theKashey/react-locky/master.svg?style=flat-square)](https://circleci.com/gh/theKashey/react-locky/tree/master)
 ----
 
-Loki - is God of Mischief, Madness and Evil!
+[![NPM](https://nodei.co/npm/react-locky.png?downloads=true&stars=true)](https://nodei.co/npm/react-locky/)
 
-Locky - is God of Locks, Event capturing and Stealing.
+Loki  - is God of Mischief, Madness and Evil!
+
+Locky - is God of Locks, Event capturing and Stealing. Small and very slender brother - just 2kb.
 
 Locky will never let event escape the target node, will prevent scrolls outside, will do the HTML5 `inert` job.
 Locky will completely disable any user iterations outside of nested children.
