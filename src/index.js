@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { addEvent, getHandler } from './utils';
+import { addEvent, getHandler, removeEvent } from './utils';
 import { getTouchY, handleScroll } from './handleScroll';
 import { EVENTS } from './defaultEvents';
+import { isInside } from './isInside';
 
 class EventLock extends Component {
   static propTypes = {
     noDefault: PropTypes.bool,
     children: PropTypes.node,
     enabled: PropTypes.bool,
+    group: PropTypes.string,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     onEscape: PropTypes.func,
     events: PropTypes.objectOf(PropTypes.oneOf([true, false, 'no-default', 'report'])),
+    className: PropTypes.string,
   };
 
   static defaultProps = {
@@ -60,8 +63,8 @@ class EventLock extends Component {
   }
 
   disable() {
-    this.documentEvents.forEach(({ event, handler }) => document.removeEventListener(event, handler, true));
-    this.nodeEvents.forEach(({ event, handler }) => this.ref.removeEventListener(event, handler));
+    this.documentEvents.forEach(removeEvent);
+    this.nodeEvents.forEach(removeEvent);
   }
 
   setRef = (ref) => {
@@ -74,7 +77,7 @@ class EventLock extends Component {
   };
   scrollTouchMove = event => handleScroll(this.ref, event, this.touchStart - getTouchY(event));
 
-  isEventInLock = event => this.ref === event.target || this.ref.contains(event.target);
+  isEventInLock = event => this.ref && isInside(this.ref, event.target)
 
   getEventHandlers() {
     const { noDefault, events } = this.props;
@@ -94,9 +97,10 @@ class EventLock extends Component {
   }
 
   render() {
-    const Node = this.props.component || (<div />).type;
+    const { component, group, className } = this.props;
+    const Node = component || (<div />).type;
     return (
-      <Node ref={this.setRef}>
+      <Node ref={this.setRef} data-locky-group={group} className={className}>
         {this.props.children}
       </Node>
     );

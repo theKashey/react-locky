@@ -33,4 +33,12 @@ export const getHandler = (event, option, callback) => {
 
 
 export const addEvent = (target, event, handler, capture) =>
-  handler && ({ event, handler: target.addEventListener(event, handler, capture) });
+  handler && ({
+    target,
+    event,
+    handler: (target.addEventListener(event, handler, capture), handler),
+    capture,
+  });
+
+
+export const removeEvent = ({ target, event, handler, capture }) => target.removeEventListener(event, handler, capture);

@@ -29,11 +29,13 @@ Locky will completely disable any user iterations outside of nested children.
 
 # API
  Locky accepts a few props.
- - enabled[=true], controls Locky behavior.
+ - enabled[=true], controls Locky behavior. 
+ - onEscape, will be triggered when someone will try "escape" the lock. See "report" events below
  - noDefault[=false], disables all "default" events
+ - events[=defaultEvents], DOM events to manage
+ - group[=null], focus group id. Locks with the same group will not block each other.
  - component[=div], allows to replace HTML tag.
- - onEscape, will be triggered when someone will try escape lock
- - events - events to manage
+ - className[=null], Locky will forward className to component.
  
 # Default events
  - click: 'report' (will call `onEscape`)
