@@ -47,7 +47,7 @@ class EventLock extends Component {
     const handlers = this.getEventHandlers();
     this.documentEvents = Object
       .keys(handlers)
-      .map(event => addEvent(document, event, this.getHandler(event, handlers[event])))
+      .map(event => addEvent(document, event, this.getHandler(event, handlers[event]), true))
       .filter(x => x);
 
     this.nodeEvents = [];
