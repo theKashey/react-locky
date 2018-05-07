@@ -27,6 +27,12 @@ Locky will completely disable any user iterations outside of nested children.
  </div>
 ```
 
+In case you need to lock only scroll
+
+```js
+ <Locky noDefault events={{scroll: true}}> .... </Locky>
+```
+
 # API
  Locky accepts a few props.
  - enabled[=true], controls Locky behavior. 
@@ -50,8 +56,12 @@ Locky will completely disable any user iterations outside of nested children.
  - wheel: true, 
  
 # Example
+ - https://codesandbox.io/s/0ok0pz7vml - "Scroll" locky
  - https://codesandbox.io/s/l7nrkv1rnq - simple Locky
  - https://codesandbox.io/s/k55641yx6o - a bit more complex 
+ 
+# Article
+ - https://medium.com/p/how-to-train-a-your-scroll-c9edcf28dbfa
  
 # Related
  - [react-focus-lock](react-focus-lock) - to scope focus
