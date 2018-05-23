@@ -22,7 +22,7 @@ Locky will completely disable any user iterations outside of nested children.
      
      // you can tune behavior
      <Locky events={{keydown: false}}>
-       // Locky got everything, expect keydown        
+       // Locky got everything, except keydown        
      </Locky>
  </div>
 ```
