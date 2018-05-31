@@ -24,9 +24,15 @@ import {Locky} from 'react-locky';
      
      // you can tune behavior
      <Locky events={{keydown: false}}>
-       // Locky got everything, expect keydown        
+       // Locky got everything, except keydown        
      </Locky>
  </div>
+```
+
+In case you need to lock only scroll
+
+```js
+ <Locky noDefault events={{scroll: true}}> .... </Locky>
 ```
 
 # API
@@ -52,6 +58,7 @@ import {Locky} from 'react-locky';
  - wheel: true, 
  
 # Example
+ - https://codesandbox.io/s/0ok0pz7vml - "Scroll" locky
  - https://codesandbox.io/s/l7nrkv1rnq - simple Locky
  - https://codesandbox.io/s/k55641yx6o - a bit more complex 
  
@@ -63,10 +70,13 @@ Just track clicks outside your element
   ...your content
 </Locky>
 ``` 
+
+# Article
+ - [How to train your scroll](https://hackernoon.com/how-to-train-a-your-scroll-c9edcf28dbfa) - a medium article.
  
 # Related
  - [react-focus-lock](react-focus-lock) - to scope focus
- - [How to train your scroll](https://hackernoon.com/how-to-train-a-your-scroll-c9edcf28dbfa) - a medium article. 
+  
  
  Locky __could not__ manage focus itself, as long there is no way to "preventDefault" it.
  Once you will "tab-out", you will not be able to "tab-in", as long key events are blocked. 
