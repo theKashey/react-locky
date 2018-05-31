@@ -11,6 +11,8 @@ Locky will never let event escape the target node, will prevent scrolls outside,
 Locky will completely disable any user iterations outside of nested children.
 
 ```js
+import {Locky} from 'react-locky';
+
  <div>
      <Button>You will be unable to press</Button>
      <Scrollable>You will be unable to scroll</Scrollable
@@ -53,8 +55,18 @@ Locky will completely disable any user iterations outside of nested children.
  - https://codesandbox.io/s/l7nrkv1rnq - simple Locky
  - https://codesandbox.io/s/k55641yx6o - a bit more complex 
  
+# Other usages
+
+Just track clicks outside your element
+```js
+<Locky noDefault events={{click:'report-only'}} onEscape={onOuterElementClick}>
+  ...your content
+</Locky>
+``` 
+ 
 # Related
  - [react-focus-lock](react-focus-lock) - to scope focus
+ - [How to train your scroll](https://hackernoon.com/how-to-train-a-your-scroll-c9edcf28dbfa) - a medium article. 
  
  Locky __could not__ manage focus itself, as long there is no way to "preventDefault" it.
  Once you will "tab-out", you will not be able to "tab-in", as long key events are blocked. 

@@ -34,6 +34,30 @@ const Lock = () => (
   </div>
 )
 
+const LockOnly = () => (
+  <div>
+    {clone(<div>SOME TEXT <button onClick={() => alert('!')}>a button</button> or <input/></div>)}
+    <div style={{overflow: 'scroll', height: 500}}>
+      {clone(<div>SOME TEXT <button onClick={() => alert('!')}>a button</button> or <input/></div>)}
+      <div style={{overflow: 'scroll', height: 400}}>
+        <Locky onEscape={(event) => console.log('ESC!!', event)} noDefault events={{click: 'report-only'}}>
+          LOCKY!!
+          <div style={{overflow: 'scroll', maxHeight: 200, background: 'rgba(0,0,0,0.3)'}}>
+            <div>
+              <div style={{overflow: 'scroll', maxHeight: 60, background: 'rgba(0,0,0,0.3)'}}>
+                {clone(<div><b>>> LOCK</b>SOME TEXT <button onClick={() => alert('!')}>a button</button> or <input/>
+                </div>)}
+              </div>
+              {clone(<div><b>>> LOCK</b>SOME TEXT <button onClick={() => alert('!')}>a button</button> or <input/>
+              </div>)}
+            </div>
+          </div>
+        </Locky>
+      </div>
+    </div>
+  </div>
+)
+
 const LockGroup = () => (
   <div>
     <div style={{overflow: 'scroll', height: 500}}>
@@ -66,5 +90,6 @@ const LockGroup = () => (
 
 storiesOf('Lock', module)
   .add('smoke', () => <Lock/>)
+  .add('report-only', () => <LockOnly/>)
   .add('group', () => <LockGroup/>)
 ;

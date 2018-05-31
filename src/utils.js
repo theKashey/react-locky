@@ -15,6 +15,12 @@ const report = callback => (event) => {
   }
 };
 
+const reportOnly = callback => (event) => {
+  if (callback) {
+    callback(event);
+  }
+};
+
 export const getHandler = (event, option, callback) => {
   if (!option) {
     return null;
@@ -26,6 +32,10 @@ export const getHandler = (event, option, callback) => {
 
   if (option === 'report') {
     return report(callback);
+  }
+
+  if (option === 'report-only') {
+    return reportOnly(callback);
   }
 
   return preventAll;
