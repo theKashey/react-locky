@@ -1,4 +1,5 @@
 const LOCKY_GROUP = 'data-locky-group';
+const LOCKY_TRANSPARENT = 'data-locky-transparent';
 
 const getAllInGroup = (node) => {
   const group = node.getAttribute(LOCKY_GROUP);
@@ -11,4 +12,9 @@ const getAllInGroup = (node) => {
 export const isInside = (ref, target) => {
   const all = getAllInGroup(ref);
   return !!all.find(node => node.contains(target));
+};
+
+export const shouldIgnoreEvent = (eventNode) => {
+  const freeNodes = [...document.querySelectorAll(`[${LOCKY_TRANSPARENT}="true"]`)];
+  return freeNodes.some(node => node.contains(eventNode));
 };

@@ -11,7 +11,7 @@ Locky will never let event escape the target node, will prevent scrolls outside,
 Locky will completely disable any user iterations outside of nested children.
 
 ```js
-import {Locky} from 'react-locky';
+import Locky from 'react-locky';
 
  <div>
      <Button>You will be unable to press</Button>
@@ -70,6 +70,14 @@ Just track clicks outside your element
   ...your content
 </Locky>
 ``` 
+
+# More tools
+Locky also exposes `LockyTransparent` component, which makes everything inside invisible to Locky
+```js
+import {LockyTransparent} from 'react-locky';
+
+<LockyTransparent>this content will be "locky"-free</LockyTransparent>
+```
 
 # Article
  - [How to train your scroll](https://hackernoon.com/how-to-train-a-your-scroll-c9edcf28dbfa) - a medium article.

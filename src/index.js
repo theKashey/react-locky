@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {addEvent, getHandler, removeEvent} from './utils';
-import {getTouchY, handleScroll} from './handleScroll';
-import {EVENTS} from './defaultEvents';
-import {isInside} from './isInside';
+import { addEvent, getHandler, removeEvent } from './utils';
+import { getTouchY, handleScroll } from './handleScroll';
+import { EVENTS } from './defaultEvents';
+import { isInside, shouldIgnoreEvent } from './isInside';
 
 class EventLock extends Component {
   static propTypes = {
@@ -19,7 +19,7 @@ class EventLock extends Component {
 
   static defaultProps = {
     enabled: true,
-    noPreventDefault: false
+    noPreventDefault: false,
   };
 
   componentDidMount() {
@@ -81,7 +81,7 @@ class EventLock extends Component {
   isEventInLock = event => this.ref && isInside(this.ref, event.target)
 
   getEventHandlers() {
-    const {noDefault, events} = this.props;
+    const { noDefault, events } = this.props;
     return Object.assign({}, noDefault ? {} : EVENTS, events || {});
   }
 
@@ -89,7 +89,7 @@ class EventLock extends Component {
     const handler = getHandler(eventName, option, this.props.onEscape);
     if (handler) {
       return (event) => {
-        if (!this.isEventInLock(event)) {
+        if (!this.isEventInLock(event) && !shouldIgnoreEvent(event.target)) {
           handler(event);
         }
       };
@@ -98,8 +98,8 @@ class EventLock extends Component {
   }
 
   render() {
-    const {component, group, className} = this.props;
-    const Node = component || (<div/>).type;
+    const { component, group, className } = this.props;
+    const Node = component || (<div />).type;
     return (
       <Node ref={this.setRef} data-locky-group={group} className={className}>
         {this.props.children}
@@ -107,5 +107,18 @@ class EventLock extends Component {
     );
   }
 }
+
+export const LockyTransparent = ({ children, enabled = true }) => (
+  <div data-locky-transparent={enabled}>{children}</div>
+);
+
+LockyTransparent.propTypes = {
+  children: PropTypes.node,
+  enabled: PropTypes.bool,
+};
+
+LockyTransparent.defaultProps = {
+  enabled: true,
+};
 
 export default EventLock;

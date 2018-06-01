@@ -1,13 +1,16 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 
-import Locky from '../src';
+import Locky, {LockyTransparent} from '../src';
 
 const clone = a => Array(10).fill(1).map(x => a);
 
 const Lock = () => (
   <div>
     {clone(<div>SOME TEXT <button onClick={() => alert('!')}>a button</button> or <input/></div>)}
+    <LockyTransparent>
+      <button onClick={() => alert('transparent')}>OUT OF LOCK</button>
+    </LockyTransparent>
     <div style={{overflow: 'scroll', height: 500}}>
       {clone(<div>SOME TEXT <button onClick={() => alert('!')}>a button</button> or <input/></div>)}
       <div style={{overflow: 'scroll', height: 400}}>
@@ -39,6 +42,9 @@ const LockOnly = () => (
     {clone(<div>SOME TEXT <button onClick={() => alert('!')}>a button</button> or <input/></div>)}
     <div style={{overflow: 'scroll', height: 500}}>
       {clone(<div>SOME TEXT <button onClick={() => alert('!')}>a button</button> or <input/></div>)}
+      <LockyTransparent>
+        <button onClick={() => alert('transparent')}>a button</button>
+      </LockyTransparent>
       <div style={{overflow: 'scroll', height: 400}}>
         <Locky onEscape={(event) => console.log('ESC!!', event)} noDefault events={{click: 'report-only'}}>
           LOCKY!!
