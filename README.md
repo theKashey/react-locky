@@ -79,6 +79,10 @@ import {LockyTransparent} from 'react-locky';
 <LockyTransparent>this content will be "locky"-free</LockyTransparent>
 ```
 
+# ScrollBars
+Locks will __not hide your scroll bars__! And there is no way to prevent scrolling using the scroll bars.
+You have to use [react-scrolllock](https://github.com/jossmac/react-scrolllock) to complitely disable scroll, or _Strollable_ from [react-stroller](https://github.com/theKashey/React-stroller) to hide scroll bars.
+
 # Article
  - [How to train your scroll](https://hackernoon.com/how-to-train-a-your-scroll-c9edcf28dbfa) - a medium article.
  
