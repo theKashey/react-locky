@@ -1,7 +1,7 @@
 # react-locky [![CircleCI status](https://img.shields.io/circleci/project/github/theKashey/react-locky/master.svg?style=flat-square)](https://circleci.com/gh/theKashey/react-locky/tree/master)
 ----
 
-[![NPM](https://nodei.co/npm/react-locky.png?downloads=true&stars=true)](https://nodei.co/npm/react-locky/)
+[![NPM](https://nodei.co/npm/react-locky.png?downloads=true&stars=true)](https://nodei.co/npm/react-locky/) [![Greenkeeper badge](https://badges.greenkeeper.io/theKashey/react-locky.svg)](https://greenkeeper.io/)
 
 Loki  - is God of Mischief, Madness and Evil!
 
