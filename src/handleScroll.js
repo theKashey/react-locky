@@ -1,11 +1,11 @@
-import { preventAll } from './utils';
+import { preventAll, preventDefault } from './utils';
 
 export const getTouchY = event => event.changedTouches[0].clientY;
 
-export const handleScroll = (endTarget, event, sourceDelta) => {
+export const handleScroll = (endTarget, event, sourceDelta, preventOnly = false) => {
   const delta = sourceDelta;
   // find scrollable target
-  let target = event.target;
+  let { target } = event;
 
   let shouldCancelScroll = false;
   const isDeltaPositive = delta > 0;
@@ -30,6 +30,10 @@ export const handleScroll = (endTarget, event, sourceDelta) => {
 
   // cancel scroll
   if (shouldCancelScroll) {
-    preventAll(event);
+    if (preventOnly) {
+      preventDefault(event);
+    } else {
+      preventAll(event);
+    }
   }
 };

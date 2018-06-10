@@ -15,11 +15,12 @@ class EventLock extends Component {
     onEscape: PropTypes.func,
     events: PropTypes.objectOf(PropTypes.oneOf([true, false, 'no-default', 'report', 'report-only'])),
     className: PropTypes.string,
+    preventOnly: PropTypes.bool,
   };
 
   static defaultProps = {
     enabled: true,
-    noPreventDefault: false,
+    preventOnly: false,
   };
 
   componentDidMount() {
@@ -53,13 +54,11 @@ class EventLock extends Component {
 
     this.nodeEvents = [];
     if (handlers.scroll) {
-      this.nodeEvents.push(
-        ...[
-          addEvent(this.ref, 'wheel', this.scrollWheel, true),
-          addEvent(this.ref, 'touchstart', this.scrollTouchStart, true),
-          addEvent(this.ref, 'touchmove', this.scrollTouchMove, true),
-        ],
-      );
+      this.nodeEvents.push(...[
+        addEvent(this.ref, 'wheel', this.scrollWheel, true),
+        addEvent(this.ref, 'touchstart', this.scrollTouchStart, true),
+        addEvent(this.ref, 'touchmove', this.scrollTouchMove, true),
+      ]);
     }
   }
 
@@ -72,11 +71,11 @@ class EventLock extends Component {
     this.ref = ref;
   };
 
-  scrollWheel = event => handleScroll(this.ref, event, event.deltaY);
+  scrollWheel = event => handleScroll(this.ref, event, event.deltaY, this.props.preventOnly);
   scrollTouchStart = (event) => {
     this.touchStart = getTouchY(event);
   };
-  scrollTouchMove = event => handleScroll(this.ref, event, this.touchStart - getTouchY(event));
+  scrollTouchMove = event => handleScroll(this.ref, event, this.touchStart - getTouchY(event), this.props.preventOnly);
 
   isEventInLock = event => this.ref && isInside(this.ref, event.target)
 

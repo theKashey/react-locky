@@ -4,7 +4,7 @@ export const preventAll = (event) => {
   event.stopImmediatePropagation();
 };
 
-const preventDefault = (event) => {
+export const preventDefault = (event) => {
   event.preventDefault();
 };
 
@@ -51,4 +51,6 @@ export const addEvent = (target, event, handler, capture) =>
   });
 
 
-export const removeEvent = ({ target, event, handler, capture }) => target.removeEventListener(event, handler, capture);
+export const removeEvent = ({
+  target, event, handler, capture,
+}) => target.removeEventListener(event, handler, capture);
