@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+type LockyEventHandler = (true | false | 'no-default' | 'report');
+
 interface Props {
   noDefault?: boolean,
   children: React.ReactNode,
@@ -7,7 +9,18 @@ interface Props {
   group?: string,
   component?: React.ComponentType,
   onEscape?: () => void,
-  events?: (true | false | 'no-default' | 'report')[],
+  events?: {
+    click?: LockyEventHandler,
+    mousemove?: LockyEventHandler,
+    mousedown?: LockyEventHandler,
+    touchmove?: LockyEventHandler,
+    touchstart?: LockyEventHandler,
+    keydown?: LockyEventHandler,
+    change?: LockyEventHandler,
+    scroll?: LockyEventHandler,
+    wheel?: LockyEventHandler,
+  }
 }
 
-export default class Locky extends React.Component<Props> {}
+export default class Locky extends React.Component<Props> {
+}
