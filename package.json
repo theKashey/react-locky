@@ -64,7 +64,7 @@
   },
   "homepage": "https://github.com/theKashey/react-locky#readme",
   "dependencies": {
-    "prop-types": "15.6.1",
+    "prop-types": "15.6.2",
     "size-limit": "^0.18.1"
   }
 }
