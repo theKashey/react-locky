@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-type LockyEventHandler = (true | false | 'no-default' | 'report');
+type LockyEventHandler = (true | false | 'no-default' | 'report' | 'report-only');
 
 interface Props {
   noDefault?: boolean,
