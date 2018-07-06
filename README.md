@@ -1,8 +1,10 @@
-# react-locky [![CircleCI status](https://img.shields.io/circleci/project/github/theKashey/react-locky/master.svg?style=flat-square)](https://circleci.com/gh/theKashey/react-locky/tree/master)
+# react-locky 
+[![CircleCI status](https://img.shields.io/circleci/project/github/theKashey/react-locky/master.svg?style=flat-square)](https://circleci.com/gh/theKashey/react-locky/tree/master)
+[![Greenkeeper badge](https://badges.greenkeeper.io/theKashey/react-locky.svg)](https://greenkeeper.io/)
+
 ----
 
-[![NPM](https://nodei.co/npm/react-locky.png?downloads=true&stars=true)](https://nodei.co/npm/react-locky/) [![Greenkeeper badge](https://badges.greenkeeper.io/theKashey/react-locky.svg)](https://greenkeeper.io/)
-
+[![NPM](https://nodei.co/npm/react-locky.png?downloads=true&stars=true)](https://nodei.co/npm/react-locky/) 
 Loki  - is God of Mischief, Madness and Evil!
 
 Locky - is God of Locks, Event capturing and Stealing. Small and very slender brother - just 2kb.
