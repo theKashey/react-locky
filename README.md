@@ -65,6 +65,14 @@ In case you need to lock only scroll
  - https://codesandbox.io/s/l7nrkv1rnq - simple Locky
  - https://codesandbox.io/s/k55641yx6o - a bit more complex 
  
+# Tip
+__important__ tip for __Mobile Safary__ - while normal "touch move" will
+scroll "scrollable" container, touch+move started on inputs will start
+__drag-n-drop__ and cause whole layer(modal/page) scroll. 
+(it will just scroll as a 💩, or not scroll at all).
+
+To disable this behavior - apply ` -webkit-overflow-scrolling: touch;` on the page.
+ 
 # Other usages
 
 Just track clicks outside your element
