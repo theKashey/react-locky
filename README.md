@@ -100,9 +100,12 @@ You have to use [react-scrolllock](https://github.com/jossmac/react-scrolllock) 
 # Related
  - [react-focus-lock](react-focus-lock) - to scope focus
   
- 
  Locky __could not__ manage focus itself, as long there is no way to "preventDefault" it.
  Once you will "tab-out", you will not be able to "tab-in", as long key events are blocked. 
+ 
+ - [dom-locky](https://github.com/thearnica/dom-locky) - Vanilla DOM API implimentation of Locky.
+ 
+ - [react-stroller](https://github.com/theKashey/react-stroller) - React scrollbar manager. To hide or replace.
  
  - [react-scroll-captor](https://github.com/jossmac/react-scroll-captor) - to scope scroll.
  
