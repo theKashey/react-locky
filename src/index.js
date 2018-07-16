@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import ReactDOM from "react-dom";
 import PropTypes from 'prop-types';
-import { addEvent, getHandler, removeEvent } from './utils';
-import { getTouchY, handleScroll } from './handleScroll';
-import { EVENTS } from './defaultEvents';
-import { isInside, shouldIgnoreEvent } from './isInside';
+import {addEvent, getHandler, removeEvent} from './utils';
+import {getTouchY, handleScroll} from './handleScroll';
+import {EVENTS} from './defaultEvents';
+import {isInside, shouldIgnoreEvent} from './isInside';
+
 
 class EventLock extends Component {
   static propTypes = {
@@ -16,6 +18,7 @@ class EventLock extends Component {
     events: PropTypes.objectOf(PropTypes.oneOf([true, false, 'no-default', 'report', 'report-only'])),
     className: PropTypes.string,
     preventOnly: PropTypes.bool,
+    headless: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -24,6 +27,9 @@ class EventLock extends Component {
   };
 
   componentDidMount() {
+    if (this.props.headless) {
+      this.setRef(ReactDOM.findDOMNode(this));
+    }
     if (this.props.enabled) {
       this.enable();
     }
@@ -69,6 +75,9 @@ class EventLock extends Component {
 
   setRef = (ref) => {
     this.ref = ref;
+    if (!('scrollTop' in ref)) {
+      console.error('Locky: would not work for ', ref);
+    }
   };
 
   scrollWheel = event => handleScroll(this.ref, event, event.deltaY, this.props.preventOnly);
@@ -80,7 +89,7 @@ class EventLock extends Component {
   isEventInLock = event => this.ref && isInside(this.ref, event.target)
 
   getEventHandlers() {
-    const { noDefault, events } = this.props;
+    const {noDefault, events} = this.props;
     return Object.assign({}, noDefault ? {} : EVENTS, events || {});
   }
 
@@ -97,17 +106,20 @@ class EventLock extends Component {
   }
 
   render() {
-    const { component, group, className } = this.props;
-    const Node = component || (<div />).type;
-    return (
-      <Node ref={this.setRef} data-locky-group={group} className={className}>
-        {this.props.children}
-      </Node>
-    );
+    const {component, group, className} = this.props;
+    const Node = component || (<div/>).type;
+
+    return this.props.headless
+      ? this.props.children
+      : (
+        <Node ref={this.setRef} data-locky-group={group} className={className}>
+          {this.props.children}
+        </Node>
+      );
   }
 }
 
-export const LockyTransparent = ({ children, enabled = true }) => (
+export const LockyTransparent = ({children, enabled = true}) => (
   <div data-locky-transparent={enabled}>{children}</div>
 );
 

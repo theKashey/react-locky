@@ -9,6 +9,7 @@ interface Props {
   group?: string,
   component?: React.ComponentType,
   onEscape?: () => void,
+  headless?: boolean,
   events?: {
     click?: LockyEventHandler,
     mousemove?: LockyEventHandler,

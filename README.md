@@ -44,9 +44,11 @@ In case you need to lock only scroll
  - onEscape, will be triggered when someone will try "escape" the lock. See "report" events below
  - noDefault[=false], disables all "default" events
  - events[=defaultEvents], DOM events to manage
- - group[=null], focus group id. Locks with the same group will not block each other.
+ - group[=null], focus group id. Locks with the same group will not block each other. You may setup groups manually by adding
+ `data-locky-group={name}` attribute anywhere.
  - component[=div], allows to replace HTML tag.
  - className[=null], Locky will forward className to component.
+ - headless[=false], Locky will not create `component`, but will use the first node inside it (groups will probably not work).
  
 # Default events
  - click: 'report' (will call `onEscape`)
