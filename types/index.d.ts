@@ -8,6 +8,7 @@ interface Props {
   enabled: boolean,
   group?: string,
   component?: React.ComponentType,
+  className?: string,
   onEscape?: () => void,
   headless?: boolean,
   events?: {
