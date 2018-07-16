@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import ReactDOM from "react-dom";
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import {addEvent, getHandler, removeEvent} from './utils';
-import {getTouchY, handleScroll} from './handleScroll';
-import {EVENTS} from './defaultEvents';
-import {isInside, shouldIgnoreEvent} from './isInside';
+import { addEvent, getHandler, removeEvent } from './utils';
+import { getTouchY, handleScroll } from './handleScroll';
+import { EVENTS } from './defaultEvents';
+import { isInside, shouldIgnoreEvent } from './isInside';
 
 
 class EventLock extends Component {
@@ -28,6 +28,7 @@ class EventLock extends Component {
 
   componentDidMount() {
     if (this.props.headless) {
+      // eslint-disable-next-line
       this.setRef(ReactDOM.findDOMNode(this));
     }
     if (this.props.enabled) {
@@ -76,6 +77,7 @@ class EventLock extends Component {
   setRef = (ref) => {
     this.ref = ref;
     if (!('scrollTop' in ref)) {
+      // eslint-disable-next-line
       console.error('Locky: would not work for ', ref);
     }
   };
@@ -89,7 +91,7 @@ class EventLock extends Component {
   isEventInLock = event => this.ref && isInside(this.ref, event.target)
 
   getEventHandlers() {
-    const {noDefault, events} = this.props;
+    const { noDefault, events } = this.props;
     return Object.assign({}, noDefault ? {} : EVENTS, events || {});
   }
 
@@ -106,8 +108,8 @@ class EventLock extends Component {
   }
 
   render() {
-    const {component, group, className} = this.props;
-    const Node = component || (<div/>).type;
+    const { component, group, className } = this.props;
+    const Node = component || (<div />).type;
 
     return this.props.headless
       ? this.props.children
@@ -119,7 +121,7 @@ class EventLock extends Component {
   }
 }
 
-export const LockyTransparent = ({children, enabled = true}) => (
+export const LockyTransparent = ({ children, enabled = true }) => (
   <div data-locky-transparent={enabled}>{children}</div>
 );
 
