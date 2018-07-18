@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import {addEvent, getHandler, removeEvent} from './utils';
-import {getTouchY, handleScroll} from './handleScroll';
-import {EVENTS} from './defaultEvents';
-import {isInside, isInsideCurrent, isLastInGroup, shouldIgnoreEvent} from './isInside';
+import { addEvent, getHandler, removeEvent } from './utils';
+import { getTouchY, handleScroll } from './handleScroll';
+import { EVENTS } from './defaultEvents';
+import { isInside, isInsideCurrent, isLastInGroup, shouldIgnoreEvent } from './isInside';
 
 
 const groupTracker = {};
@@ -30,7 +30,7 @@ class EventLock extends Component {
   };
 
   componentDidMount() {
-    const {group = ''} = this.props;
+    const { group = '' } = this.props;
     if (!groupTracker[group]) {
       groupTracker[group] = [];
     }
@@ -50,7 +50,7 @@ class EventLock extends Component {
     if (this.props.enabled) {
       this.disable();
     }
-    const {group} = this.props;
+    const { group } = this.props;
     if (group) {
       groupTracker[group] = groupTracker[group].filter(x => x !== this);
     }
@@ -107,7 +107,7 @@ class EventLock extends Component {
   isEventInLock = event => this.ref && isInside(this.ref, event.target)
 
   getEventHandlers() {
-    const {noDefault, events} = this.props;
+    const { noDefault, events } = this.props;
     return Object.assign({}, noDefault ? {} : EVENTS, events || {});
   }
 
@@ -118,7 +118,7 @@ class EventLock extends Component {
         if (shouldIgnoreEvent(event.target)) {
           return;
         }
-        const {leaded, group = ''} = this.props;
+        const { leaded, group = '' } = this.props;
         if (!isInsideCurrent(this.ref, event.target)) {
           if (
             (leaded && group && (isLastInGroup(this.ref) || groupTracker[group][0] === this)) ||
@@ -127,14 +127,14 @@ class EventLock extends Component {
             handler(event);
           }
         }
-      }
+      };
     }
     return null;
   }
 
   render() {
-    const {component, group, className} = this.props;
-    const Node = component || (<div/>).type;
+    const { component, group, className } = this.props;
+    const Node = component || (<div />).type;
 
     return this.props.headless
       ? this.props.children
@@ -146,7 +146,7 @@ class EventLock extends Component {
   }
 }
 
-export const LockyTransparent = ({children, enabled = true}) => (
+export const LockyTransparent = ({ children, enabled = true }) => (
   <div data-locky-transparent={enabled}>{children}</div>
 );
 

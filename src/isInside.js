@@ -14,9 +14,7 @@ export const isInside = (ref, target) => {
   return !!all.find(node => node.contains(target));
 };
 
-export const isInsideCurrent = (ref, target) => {
-  return ref.contains(target);
-};
+export const isInsideCurrent = (ref, target) => ref.contains(target);
 
 export const isLastInGroup = (ref) => {
   const refs = getAllInGroup(ref);
