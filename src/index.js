@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { addEvent, getHandler, removeEvent } from './utils';
-import { getTouchY, handleScroll } from './handleScroll';
-import { EVENTS } from './defaultEvents';
-import { isInside, shouldIgnoreEvent } from './isInside';
+import {addEvent, getHandler, removeEvent} from './utils';
+import {getTouchY, handleScroll} from './handleScroll';
+import {EVENTS} from './defaultEvents';
+import {isInside, isInsideCurrent, isLastInGroup, shouldIgnoreEvent} from './isInside';
 
+
+const groupTracker = {};
 
 class EventLock extends Component {
   static propTypes = {
@@ -13,6 +15,7 @@ class EventLock extends Component {
     children: PropTypes.node,
     enabled: PropTypes.bool,
     group: PropTypes.string,
+    leaded: PropTypes.bool,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     onEscape: PropTypes.func,
     events: PropTypes.objectOf(PropTypes.oneOf([true, false, 'no-default', 'report', 'report-only'])),
@@ -27,6 +30,13 @@ class EventLock extends Component {
   };
 
   componentDidMount() {
+    const {group = ''} = this.props;
+    if (!groupTracker[group]) {
+      groupTracker[group] = [];
+    }
+
+    groupTracker[group].unshift(this);
+
     if (this.props.headless) {
       // eslint-disable-next-line
       this.setRef(ReactDOM.findDOMNode(this));
@@ -39,6 +49,10 @@ class EventLock extends Component {
   componentWillUnmount() {
     if (this.props.enabled) {
       this.disable();
+    }
+    const {group} = this.props;
+    if (group) {
+      groupTracker[group] = groupTracker[group].filter(x => x !== this);
     }
   }
 
@@ -76,9 +90,11 @@ class EventLock extends Component {
 
   setRef = (ref) => {
     this.ref = ref;
-    if (!('scrollTop' in ref)) {
-      // eslint-disable-next-line
-      console.error('Locky: would not work for ', ref);
+    if (ref) {
+      if (!('scrollTop' in ref)) {
+        // eslint-disable-next-line
+        console.error('Locky: would not work for ', ref);
+      }
     }
   };
 
@@ -91,7 +107,7 @@ class EventLock extends Component {
   isEventInLock = event => this.ref && isInside(this.ref, event.target)
 
   getEventHandlers() {
-    const { noDefault, events } = this.props;
+    const {noDefault, events} = this.props;
     return Object.assign({}, noDefault ? {} : EVENTS, events || {});
   }
 
@@ -99,17 +115,26 @@ class EventLock extends Component {
     const handler = getHandler(eventName, option, this.props.onEscape);
     if (handler) {
       return (event) => {
-        if (!this.isEventInLock(event) && !shouldIgnoreEvent(event.target)) {
-          handler(event);
+        if (shouldIgnoreEvent(event.target)) {
+          return;
         }
-      };
+        const {leaded, group = ''} = this.props;
+        if (!isInsideCurrent(this.ref, event.target)) {
+          if (
+            (leaded && group && (isLastInGroup(this.ref) || groupTracker[group][0] === this)) ||
+            !this.isEventInLock(event)
+          ) {
+            handler(event);
+          }
+        }
+      }
     }
     return null;
   }
 
   render() {
-    const { component, group, className } = this.props;
-    const Node = component || (<div />).type;
+    const {component, group, className} = this.props;
+    const Node = component || (<div/>).type;
 
     return this.props.headless
       ? this.props.children
@@ -121,7 +146,7 @@ class EventLock extends Component {
   }
 }
 
-export const LockyTransparent = ({ children, enabled = true }) => (
+export const LockyTransparent = ({children, enabled = true}) => (
   <div data-locky-transparent={enabled}>{children}</div>
 );
 

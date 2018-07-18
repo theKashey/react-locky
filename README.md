@@ -49,6 +49,7 @@ In case you need to lock only scroll
  - component[=div], allows to replace HTML tag.
  - className[=null], Locky will forward className to component.
  - headless[=false], Locky will not create `component`, but will use the first node inside it (groups will probably not work).
+ - leaded[=false], Locky will work only with "group" leader - mounted last instance for the provided group.
  
 # Default events
  - click: 'report' (will call `onEscape`)
@@ -68,6 +69,12 @@ In case you need to lock only scroll
  - https://codesandbox.io/s/k55641yx6o - a bit more complex 
  
 # Tip
+
+Probably you __don't need to hook a keyboard__. It will also block page refresh events.
+```js
+<Locky events={{keydown:false}} />
+```
+
 __important__ tip for __Mobile Safary__ - while normal "touch move" will
 scroll "scrollable" container, touch+move started on inputs will start
 __drag-n-drop__ and cause whole layer(modal/page) scroll. 

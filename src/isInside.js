@@ -14,6 +14,15 @@ export const isInside = (ref, target) => {
   return !!all.find(node => node.contains(target));
 };
 
+export const isInsideCurrent = (ref, target) => {
+  return ref.contains(target);
+};
+
+export const isLastInGroup = (ref) => {
+  const refs = getAllInGroup(ref);
+  return refs[refs.length - 1] === ref;
+};
+
 export const shouldIgnoreEvent = (eventNode) => {
   const freeNodes = [...document.querySelectorAll(`[${LOCKY_TRANSPARENT}="true"]`)];
   return freeNodes.some(node => node.contains(eventNode));
