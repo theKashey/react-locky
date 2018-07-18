@@ -11,6 +11,7 @@ interface Props {
   className?: string,
   onEscape?: () => void,
   headless?: boolean,
+  leaded?: boolean,
   events?: {
     click?: LockyEventHandler,
     mousemove?: LockyEventHandler,
