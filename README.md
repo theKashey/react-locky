@@ -116,7 +116,7 @@ You have to use [react-scrolllock](https://github.com/jossmac/react-scrolllock) 
  
  - [react-stroller](https://github.com/theKashey/react-stroller) - React scrollbar manager. To hide or replace.
  
- - [react-scroll-captor](https://github.com/jossmac/react-scroll-captor) - to scope scroll.
+ - [react-scroll-locky](https://github.com/theKashey/react-scroll-locky) - to scope scroll(via locky) and remove scroll bars.
  
  `<Locky noDefault events={{scroll:true}} />` will do almost the same, but differently.
  As long `react-scroll-captor` manage "scroll" for `children`, locky could manage scroll for any `target` inside.
