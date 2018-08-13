@@ -1,6 +1,6 @@
 {
   "name": "react-locky",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Lock Loki",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
