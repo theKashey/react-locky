@@ -82,6 +82,10 @@ __drag-n-drop__ and cause whole layer(modal/page) scroll.
 
 To disable this behavior - apply ` -webkit-overflow-scrolling: touch;` on the page.
  
+Locky in non-headless mode will produce a div. That div could be something you dont want to have.
+Feel free to set a `className` prop, with class holding `display:inline` - as a result parasite div will
+shrink to 1 pixel. 
+ 
 # Other usages
 
 Just track clicks outside your element

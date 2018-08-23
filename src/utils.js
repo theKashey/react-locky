@@ -41,16 +41,33 @@ export const getHandler = (event, option, callback) => {
   return preventAll;
 };
 
+let passiveSupported = false;
+try {
+  const options = Object.defineProperty({}, 'passive', {
+    get() {
+      passiveSupported = true;
+      return true;
+    },
+  });
+
+  window.addEventListener('test', options, options);
+  window.removeEventListener('test', options, options);
+} catch (err) {
+  passiveSupported = false;
+}
+const agressiveCapture = passiveSupported ? { capture: true, passive: false } : false;
 
 export const addEvent = (target, event, handler, capture) =>
   handler && ({
     target,
     event,
-    handler: (target.addEventListener(event, handler, capture), handler),
-    capture,
+    handler: (target.addEventListener(event, handler, capture && agressiveCapture), handler),
+    capture: capture && agressiveCapture,
   });
 
 
 export const removeEvent = ({
   target, event, handler, capture,
-}) => target.removeEventListener(event, handler, capture);
+}) => (
+  target.removeEventListener(event, handler, capture)
+);
