@@ -16,12 +16,18 @@ interface Props {
     click?: LockyEventHandler,
     mousemove?: LockyEventHandler,
     mousedown?: LockyEventHandler,
+    mouseup?: LockyEventHandler,
     touchmove?: LockyEventHandler,
     touchstart?: LockyEventHandler,
+    touchend?: LockyEventHandler,
     keydown?: LockyEventHandler,
+    keyup?: LockyEventHandler,
+    keypress?: LockyEventHandler,
     change?: LockyEventHandler,
     scroll?: LockyEventHandler,
     wheel?: LockyEventHandler,
+    focusin?: LockyEventHandler,
+    focusout?: LockyEventHandler,
   }
 }
 
