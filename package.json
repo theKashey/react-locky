@@ -60,7 +60,7 @@
     "jsdom-global": "3.0.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "react-test-renderer": "^16.4.0",
+    "react-test-renderer": "^16.6.0",
     "size-limit": "^0.18.1",
     "storybook": "^1.0.0"
   },
