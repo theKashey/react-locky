@@ -58,7 +58,7 @@
     "jest": "^23.0.0",
     "jsdom": "11.11.0",
     "jsdom-global": "3.0.2",
-    "react": "^16.3.2",
+    "react": "16.5.2",
     "react-dom": "^16.4.1",
     "react-test-renderer": "^16.4.0",
     "size-limit": "^0.18.1",
