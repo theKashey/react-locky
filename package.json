@@ -61,7 +61,7 @@
     "react": "^16.3.2",
     "react-dom": "^16.4.1",
     "react-test-renderer": "^16.4.0",
-    "size-limit": "^0.18.1",
+    "size-limit": "^0.19.2",
     "storybook": "^1.0.0"
   },
   "homepage": "https://github.com/theKashey/react-locky#readme",
