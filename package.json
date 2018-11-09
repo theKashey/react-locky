@@ -24,6 +24,10 @@
     "event",
     "isolation"
   ],
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/"
+  },
   "author": "theKashey <thekashey@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -34,19 +38,22 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^3.3.6",
     "@storybook/addon-links": "^3.3.6",
     "@storybook/react": "^3.3.6",
     "@types/react": "^16.3.13",
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.25.0",
-    "babel-eslint": "^8.2.3",
-    "babel-jest": "^23.0.0",
-    "babel-plugin-transform-class-properties": "6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "1.7.0",
-    "babel-preset-react": "^6.24.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^9.0.0",
+    "babel-jest": "^23.4.2",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.20",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.2.0",
@@ -61,11 +68,12 @@
     "react": "^16.3.2",
     "react-dom": "^16.4.1",
     "react-test-renderer": "^16.4.0",
-    "size-limit": "^0.18.1",
+    "size-limit": "^0.21.0",
     "storybook": "^1.0.0"
   },
   "homepage": "https://github.com/theKashey/react-locky#readme",
   "dependencies": {
+    "@babel/runtime": "^7.1.5",
     "prop-types": "15.6.2"
   }
 }

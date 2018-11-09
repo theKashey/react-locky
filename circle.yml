@@ -4,7 +4,7 @@ machine:
 
 test:
   pre:
-    - npm run lint
+    - yarn run lint
 
   override:
-    - npm run test
+    - yarn run test
