@@ -8,7 +8,7 @@
 
 Loki  - is God of Mischief, Madness and Evil!
 
-Locky - is God of Locks, Event capturing and Stealing. Small and very slender brother - just 2kb.
+Locky - is God of Locks, Event capturing and Stealing. Small and very slender brother - just __1.7kb__.
 
 Locky will never let event escape the target node, will prevent scrolls outside, will do the HTML5 `inert` job.
 Locky will completely disable any user iterations outside of nested children.

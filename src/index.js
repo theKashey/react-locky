@@ -150,10 +150,10 @@ export const LockyTransparent = ({ children, enabled = true }) => (
   <div data-locky-transparent={enabled}>{children}</div>
 );
 
-LockyTransparent.propTypes = {
+LockyTransparent.propTypes = process.env.NODE_ENV !== "production" ? {
   children: PropTypes.node,
   enabled: PropTypes.bool,
-};
+} : {};
 
 LockyTransparent.defaultProps = {
   enabled: true,
