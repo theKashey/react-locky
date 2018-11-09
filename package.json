@@ -24,6 +24,10 @@
     "event",
     "isolation"
   ],
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/"
+  },
   "author": "theKashey <thekashey@gmail.com>",
   "license": "MIT",
   "bugs": {
