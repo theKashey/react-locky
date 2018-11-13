@@ -71,7 +71,7 @@
     "jsdom": "11.11.0",
     "jsdom-global": "3.0.2",
     "react": "^16.6.3",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.6.3",
     "react-test-renderer": "^16.4.0",
     "size-limit": "^0.21.0",
     "storybook": "^1.0.0"
