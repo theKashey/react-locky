@@ -9,7 +9,7 @@ interface Props {
   group?: string,
   component?: React.ComponentType,
   className?: string,
-  onEscape?: () => void,
+  onEscape?: (Event: UIEvent) => void,
   headless?: boolean,
   leaded?: boolean,
   events?: {
