@@ -1,6 +1,6 @@
 {
   "name": "react-locky",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Lock Loki",
   "main": "dist/cjs/index.js",
   "jsnext:main": "dist/es2015/index.js",
