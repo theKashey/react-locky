@@ -1,10 +1,18 @@
 const LOCKY_GROUP = 'data-locky-group';
 const LOCKY_TRANSPARENT = 'data-locky-transparent';
 
+const toArray = (a) => {
+  const ret = Array(a.length);
+  for (let i = 0; i < a.length; ++i) {
+    ret[i] = a[i];
+  }
+  return ret;
+};
+
 const getAllInGroup = (node) => {
   const group = node.getAttribute(LOCKY_GROUP);
   if (group) {
-    return [...document.querySelectorAll(`[${LOCKY_GROUP}="${group}"]`)];
+    return toArray(document.querySelectorAll(`[${LOCKY_GROUP}="${group}"]`));
   }
   return [node];
 };
@@ -22,6 +30,6 @@ export const isLastInGroup = (ref) => {
 };
 
 export const shouldIgnoreEvent = (eventNode) => {
-  const freeNodes = [...document.querySelectorAll(`[${LOCKY_TRANSPARENT}="true"]`)];
+  const freeNodes = toArray(document.querySelectorAll(`[${LOCKY_TRANSPARENT}="true"]`));
   return freeNodes.some(node => node.contains(eventNode));
 };
