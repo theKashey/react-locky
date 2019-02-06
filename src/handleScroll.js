@@ -1,11 +1,15 @@
-import { preventAll, preventDefault } from './utils';
+import {preventAll, preventDefault} from './utils';
 
 export const getTouchY = event => event.changedTouches[0].clientY;
+
+const elementCouldBeScrolled = node => (
+  window.getComputedStyle(node).overflowX !== 'hidden'
+);
 
 export const handleScroll = (endTarget, event, sourceDelta, preventOnly = false) => {
   const delta = sourceDelta;
   // find scrollable target
-  let { target } = event;
+  let {target} = event;
 
   let shouldCancelScroll = false;
   const isDeltaPositive = delta > 0;
@@ -14,13 +18,18 @@ export const handleScroll = (endTarget, event, sourceDelta, preventOnly = false)
   let availableScrollTop = 0;
 
   do {
-    const { scrollTop, scrollHeight, clientHeight } = target;
+    const {scrollTop, scrollHeight, clientHeight} = target;
 
-    availableScroll += scrollHeight - clientHeight - scrollTop;
-    availableScrollTop += scrollTop;
-
+    const elementScroll = scrollHeight - clientHeight - scrollTop;
+    if (scrollTop || elementScroll) {
+      if (elementCouldBeScrolled(target)) {
+        availableScroll += elementScroll;
+        availableScrollTop += scrollTop;
+      }
+    }
     target = target.parentNode;
-  } while (endTarget.contains(target));
+  }
+  while (endTarget.contains(target)) ;
 
   if (isDeltaPositive && delta > availableScroll) {
     shouldCancelScroll = true;
