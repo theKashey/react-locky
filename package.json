@@ -73,7 +73,7 @@
     "jsdom-global": "3.0.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
-    "react-test-renderer": "^16.4.0",
+    "react-test-renderer": "^16.8.0",
     "regenerator-runtime": "^0.13.1",
     "size-limit": "^0.21.0",
     "storybook": "^1.0.0"
