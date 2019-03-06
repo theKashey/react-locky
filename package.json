@@ -72,7 +72,7 @@
     "jsdom": "11.11.0",
     "jsdom-global": "3.0.2",
     "react": "^16.8.4",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.8.4",
     "react-test-renderer": "^16.4.0",
     "regenerator-runtime": "^0.13.1",
     "size-limit": "^0.21.0",
