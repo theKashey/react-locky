@@ -3,7 +3,7 @@ import {preventAll, preventDefault} from './utils';
 export const getTouchY = event => event.changedTouches[0].clientY;
 
 const elementCouldBeScrolled = node => (
-  window.getComputedStyle(node).overflowX !== 'hidden'
+  window.getComputedStyle(node).overflowY !== 'hidden'
 );
 
 export const handleScroll = (endTarget, event, sourceDelta, preventOnly = false) => {
