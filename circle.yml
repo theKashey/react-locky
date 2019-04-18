@@ -1,10 +1,31 @@
-machine:
-  node:
-    version: 8.9.1
-
-test:
-  pre:
-    - yarn run lint
-
-  override:
-    - yarn run test
+version: 2
+jobs:
+  build:
+    working_directory: ~/circle
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: lint
+          command: yarn lint
+      - run:
+          name: test
+          command: yarn test test
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - store_test_results:
+          path: test-results.xml
