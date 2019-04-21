@@ -43,7 +43,7 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
+    "@babel/cli": "^7.4.3",
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
@@ -59,6 +59,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.5",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.20",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
