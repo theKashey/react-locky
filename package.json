@@ -51,7 +51,7 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "@storybook/addon-actions": "^5.0.10",
+    "@storybook/addon-actions": "^5.1.5",
     "@storybook/addon-links": "^5.0.10",
     "@storybook/cli": "^5.0.10",
     "@storybook/react": "^5.0.10",
