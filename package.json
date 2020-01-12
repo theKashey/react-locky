@@ -81,7 +81,7 @@
   },
   "homepage": "https://github.com/theKashey/react-locky#readme",
   "dependencies": {
-    "@babel/runtime": "^7.1.5",
+    "@babel/runtime": "^7.8.0",
     "prop-types": "^15.6.2"
   }
 }
