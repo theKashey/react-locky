@@ -76,7 +76,7 @@
     "react-dom": "^16.4.1",
     "react-test-renderer": "^16.4.0",
     "regenerator-runtime": "^0.13.1",
-    "size-limit": "^1.0.1",
+    "size-limit": "^3.0.1",
     "storybook": "^1.0.0"
   },
   "homepage": "https://github.com/theKashey/react-locky#readme",
